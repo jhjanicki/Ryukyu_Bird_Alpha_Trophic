@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<title>Ryukyu Bird Biodiversity</title>
+
+	<!-- D3.js -->	
+    <script src="https://d3js.org/d3.v3.js"></script>
+	
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	
+	<script src="regression.min.js"></script>
+	
+	<script src="scatterplot.js"></script>
+	
+	<script src="data.js"></script>
+	
+	<!-- Open Sans & CSS -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	  <style>
+		body {
+		  font-family: 'Roboto', sans-serif;
+		  font-size: 14px;
+		  font-weight: 400;
+		  color: #525252;
+		  text-align: center;
+		}
+		
+		html, body { 
+			width:auto; 
+			height:auto; 
+		}
+		.margin30{
+			margin-bottom:30px;
+		}
+		
+		
+		
+		.axis path,
+		.axis line {
+		  fill: none;
+		  stroke: #000;
+		  shape-rendering: crispEdges;
+		}
+		
+		.axisRed line,
+		.axisRed path{
+		  stroke: #D65734;
+		  fill: none;
+		  shape-rendering: crispEdges;
+		}
+
+		
+		.axisRed text{
+		  fill: #D65734;
+		}  
+
+		.dot {
+		  /* stroke: #000; */
+		}
+		
+		.blue{
+			color:#72A8FF;
+		}
+		
+		.green{
+			color:#96BF52;
+		}
+	  </style>
+  </head>
+  <body>
+
+	
+	<div id="cont" class="container-fluid text-center">
+		
+		<div class="row">
+			<div class = "col-md-3">
+			</div>
+			<div class = "col-md-6 margin30">
+				<h2 class="margin30"> Ryukyu Islands Land Bird Island Properties vs Alpha Diversity Across Trophic Groups</h2>
+				
+			</div>
+			<div class = "col-md-3">
+			</div>
+		</div>
+		
+		
+		<div id="legend"></div>
+		<div class="row">	
+			<div class = "col-md-4">
+				<h3>  Land Birds Island Size vs Taxonomic Diversity </h3>
+				<div id="area-tax"></div>
+			</div>
+			<div class = "col-md-4">
+				<h3> Sea Birds Island Size vs Phylogenetic Diversity  </h3>
+				<div id="area-phy"></div>
+			</div>
+			<div class = "col-md-4">
+				<h3> Sea Birds Island Size vs Functional Diversity  </h3>
+				<div id="area-func"></div>
+			</div>
+		</div>
+		<div class="row">	
+			<div class = "col-md-4">
+				<h3>  Land Birds NDVI vs Taxonomic Diversity </h3>
+				<div id="ndvi-tax"></div>
+			</div>
+			<div class = "col-md-4">
+				<h3> Land Birds NDVI vs Phylogenetic Diversity  </h3>
+				<div id="ndvi-phy"></div>
+			</div>
+			<div class = "col-md-4">
+				<h3> Land Birds NDVI vs Functional Diversity  </h3>
+				<div id="ndvi-func"></div>
+			</div>
+		</div>
+		<div class="row">	
+			<div class = "col-md-4">
+				<h3>  Land Birds EVI vs Taxonomic Diversity </h3>
+				<div id="evi-tax"></div>
+			</div>
+			<div class = "col-md-4">
+				<h3> Land Birds EVI vs Phylogenetic Diversity  </h3>
+				<div id="evi-phy"></div>
+			</div>
+			<div class = "col-md-4">
+				<h3> Land Birds EVI vs Functional Diversity  </h3>
+				<div id="evi-func"></div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+
+
+
+
+ var chart = d3.custom.scatterplot()._index(0);
+ //land birds island area vs alpha
+chart.xValue('IslandArea')
+	  .yValue('Taxonomic')
+	  .xLabel('Area (log)')
+	  .yLabel('Taxonomic Diversity');
+ chart.xlog('log');
+ d3.select('#area-tax')
+	.datum(data)
+	.call(chart); 
+	
+var chart2 = d3.custom.scatterplot()._index(1);
+ //land birds island area vs alpha
+chart2.xValue('IslandArea')
+	  .yValue('Phylogenetic')
+	  .xLabel('Area (log)')
+	  .yLabel('Phylogenetic Diversity');
+ chart2.xlog('log');
+ d3.select('#area-phy')
+	.datum(data)
+	.call(chart2); 
+	
+var chart3 = d3.custom.scatterplot()._index(2);
+ //land birds island area vs alpha
+chart3.xValue('IslandArea')
+	  .yValue('Functional')
+	  .xLabel('Area (log)')
+	  .yLabel('Functional Diversity');
+ chart3.xlog('log');
+ d3.select('#area-func')
+	.datum(data)
+	.call(chart3); 
+	
+	
+var chart4 = d3.custom.scatterplot()._index(3);
+ //land birds island area vs alpha
+chart4.xValue('NDVI')
+	  .yValue('Taxonomic')
+	  .xLabel('NDVI')
+	  .yLabel('Taxonomic Diversity');
+ chart4.xlog('');
+ d3.select('#ndvi-tax')
+	.datum(data)
+	.call(chart4); 
+	
+var chart5 = d3.custom.scatterplot()._index(4);
+ //land birds island area vs alpha
+chart5.xValue('NDVI')
+	  .yValue('Phylogenetic')
+	  .xLabel('NDVI')
+	  .yLabel('Phylogenetic Diversity');
+ chart5.xlog('');
+ d3.select('#ndvi-phy')
+	.datum(data)
+	.call(chart5); 
+	
+var chart6 = d3.custom.scatterplot()._index(5);
+chart6.xValue('NDVI')
+	  .yValue('Functional')
+	  .xLabel('NDVI')
+	  .yLabel('Functional Diversity');
+ chart6.xlog('');
+ d3.select('#ndvi-func')
+	.datum(data)
+	.call(chart6); 
+	
+var chart7 = d3.custom.scatterplot()._index(6);
+chart7.xValue('EVI')
+	  .yValue('Taxonomic')
+	  .xLabel('EVI')
+	  .yLabel('Taxonomic Diversity');
+ chart7.xlog('');
+ d3.select('#evi-tax')
+	.datum(data)
+	.call(chart7); 
+	
+var chart8 = d3.custom.scatterplot()._index(7);
+chart8.xValue('EVI')
+	  .yValue('Phylogenetic')
+	  .xLabel('EVI')
+	  .yLabel('Phylogenetic Diversity');
+ chart8.xlog('');
+ d3.select('#evi-phy')
+	.datum(data)
+	.call(chart8); 
+	
+var chart9 = d3.custom.scatterplot()._index(8);
+chart9.xValue('EVI')
+	  .yValue('Functional')
+	  .xLabel('EVI')
+	  .yLabel('Functional Diversity');
+ chart9.xlog('');
+ d3.select('#evi-func')
+	.datum(data)
+	.call(chart9); 
+	
+
+
+
+
+	
+
+
+
+</script>
+	
+  </body>
+</html>
