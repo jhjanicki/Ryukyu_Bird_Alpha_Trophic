@@ -1,9 +1,9 @@
 d3.custom = {};
  
 d3.custom.scatterplot = function module() {
-	var margin = {top: 30, right: 30, bottom: 100, left: 40},
-    	width = 400,
-    	height = 350,
+	var margin = {top: 30, right: 40, bottom: 100, left: 40},
+    	width = 360,
+    	height = 300,
     	xValue ='IslandArea',
     	yValue='Taxonomic',
     	xLabel='Area',
@@ -31,7 +31,7 @@ d3.custom.scatterplot = function module() {
 					.scale(x)
 					.orient("bottom")
 					.ticks(5, ",.1s")
-    				.tickSize(6, 0);
+    				.tickSize(3, 0);
     				
 				}else{
 					 x = d3.scale.linear()
@@ -41,7 +41,7 @@ d3.custom.scatterplot = function module() {
 					.scale(x)
 					.orient("bottom")
 					.ticks(5, ",1s")
-    				.tickSize(6, 0);
+    				.tickSize(4, 0);
 				}
 
 				var y = d3.scale.linear()
@@ -100,7 +100,7 @@ d3.custom.scatterplot = function module() {
 					  .append("text")
 					  .attr("class", "label")
 					  .attr("x", width)
-					  .attr("y", -6)
+					  .attr("y", 12)
 					  .style("text-anchor", "end")
 					  .text(xLabel);
 
@@ -354,7 +354,8 @@ d3.custom.scatterplot = function module() {
 					var trendData_C= [[x1_C,y1_C,x2_C,y2_C]];
 // 		
 // 
-// 					console.log(trendData_F);
+ 					console.log("trendData_F");
+ 					console.log(trendData_F);
 // 		
 					var trendline_F = container.selectAll(".trendline"+_index)
 						.data(trendData_F);
@@ -370,6 +371,10 @@ d3.custom.scatterplot = function module() {
 					
 					var trendline_C= container.selectAll(".trendline5"+_index)
 						.data(trendData_C);
+ 	
+ 			
+ 			
+ 			
  			
 					trendline_F.enter()
 						.append("line")
@@ -380,6 +385,8 @@ d3.custom.scatterplot = function module() {
 						.attr("y2", function(d) { return y(d[3]); })
 						.attr("stroke", "#FC1207")
 						.attr("stroke-width", 1);
+						
+					
 // 		
 					trendline_I.enter()
 						.append("line")
@@ -420,7 +427,84 @@ d3.custom.scatterplot = function module() {
 						.attr("y2", function(d) { return y(d[3]); })
 						.attr("stroke", "#38385B")
 						.attr("stroke-width", 1);
-// 					  
+					
+					
+					var legend = container.append("g")
+									.attr("class", "legend");
+									
+					// var legend_F = legend.append("text")
+// 									 .style("font-size",10)
+// 									 .attr("fill","#FC1207")
+// 								     .attr("x", x(x2_F)+5)
+// 								     .attr("y",y(y2_F))
+// 								     .text("frugivore");
+// 					var legend_I = legend
+// 									 .append("text")
+// 									 .style("font-size",10)
+// 									 .attr("fill","#FD8451")
+// 								     .attr("x", x(x2_I)+5)
+// 								     .attr("y",y(y2_I))
+// 								     .text("insectivore"); 
+// 					var legend_O= legend.append("text")
+// 									 .style("font-size",10)
+// 									 .attr("fill","#ADCFD9")
+// 								     .attr("x", x(x2_O)+5)
+// 								     .attr("y",y(y2_O))
+// 								     .text("omnivore");	
+// 					var legend_G= legend.append("text")
+// 									 .style("font-size",10)
+// 									 .attr("fill","#396A8E")
+// 								     .attr("x", x(x2_G)+5)
+// 								     .attr("y",y(y2_G))
+// 								     .text("granivore");		
+// 								     
+// 					var legend_C= legend.append("text")
+// 									 .style("font-size",10)
+// 									 .attr("fill","#38385B")
+// 								     .attr("x", x(x2_C)+5)
+// 								     .attr("y",y(y2_C))
+// 								     .text("carnivore");	
+								     
+					
+					
+					
+					
+					if(yValue=='Phylogenetic'){
+						legend.attr("transform","translate(200,200)");
+					}
+					
+					
+					
+					var legendArray = ["frugivore","insectivore","omnivore","granivore","carnivore"];
+					var legendColorArray = ["#FC1207","#FD8451","#ADCFD9","#396A8E","#38385B"];
+					var legendObj = [{"trophic":"frugivore","color":"#FC1207"},{"trophic":"insectivore","color":"#FD8451"},
+										{"trophic":"omnivore","color":"#ADCFD9"},{"trophic":"granivore","color":"#396A8E"},
+										{"trophic":"carnivore","color":"#38385B"}];
+					
+					var legendSVG = legend.append("svg");
+					
+					legendSVG
+					    .selectAll("rect")
+                        .data(legendObj)
+                        .enter()
+                        .append("rect")
+                        .attr("fill",function(d){return d.color})
+                        .attr("x",30)
+                        .attr("y", function(d,i){return i*15})
+                        .attr("width",10)
+                        .attr("height",10);
+                        
+                    legendSVG
+					    .selectAll("text")
+                        .data(legendObj)
+                        .enter()
+                        .append("text")
+                        .attr("x",44)
+                        .attr("y", function(d,i){return 9+i*15})
+                        .style("font-family","Roboto'")
+                        .style("font-size",12)
+                        .text(function(d){return d.trophic});
+							  
 					  
 					  
 					  
