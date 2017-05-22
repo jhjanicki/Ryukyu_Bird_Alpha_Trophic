@@ -75,7 +75,7 @@ d3.custom.scatterplot = function module() {
 					
 				  x.domain(d3.extent(_data, function(d) { return d[xValue]; })).nice();
 				  
-				  console.log(x.domain());
+				  // console.log(x.domain());
 				  y.domain(d3.extent(_data, function(d) { return d[yValue]; })).nice();
 				  
 				
@@ -123,7 +123,7 @@ d3.custom.scatterplot = function module() {
 						return d.Trophic == 'Frugivore';
 					});
 					
-					console.log(frugivore);
+					// console.log(frugivore);
 					  
 					container.selectAll(".dot"+_index)
 					  .data(frugivore)
@@ -144,7 +144,7 @@ d3.custom.scatterplot = function module() {
 						return d.Trophic == 'Insectivore';
 					});
 					
-					console.log(insectivore);
+					// console.log(insectivore);
 					
 					
 				  container.selectAll(".dot2"+_index)
@@ -220,199 +220,207 @@ d3.custom.scatterplot = function module() {
 					  
 					  
 					  
-					// could be tax, phy or func, depending on what you pass in for the x value  
-// 					var DiversityArray_F = _data.map(function(d){
-// 							if (d.Trophic=='Frugivore'){
-// 								return d[yValue]}
-// 							});
-// 						
-// 					var DiversityArray_I = _data.map(function(d){
-// 							if (d.Trophic=='Insectivore'){
-// 								return d[yValue]}
-// 							});
-// 					var DiversityArray_O = _data.map(function(d){
-// 							if (d.Trophic=='Omnivore'){
-// 								return d[yValue]}
-// 							});
-// 					var DiversityArray_G = _data.map(function(d){
-// 							if (d.Trophic=='Granivore'){
-// 								return d[yValue]}
-// 							});
-// 					var DiversityArray_C = _data.map(function(d){
-// 							if (d.Trophic=='Carnivore'){
-// 								return d[yValue]}
-// 							});
+					
+					var xSeries_F = frugivore.map(function(d){
+							return d[xValue]});
+							
+					console.log('xSeries_F');
+					console.log(xSeries_F);
+						
+					var xSeries_I = insectivore.map(function(d){
+								return d[xValue]});			
+ 					var xSeries_O = omnivore.map(function(d){
+								return d[xValue]});
+ 					var xSeries_G = granivore.map(function(d){
+								return d[xValue]});
+					var xSeries_C = carnivore.map(function(d){
+								return d[xValue]});
+								
+								
+					console.log('xSeries_F');
+					console.log(xSeries_F);
+					
+					console.log('xSeries_I');
+					console.log(xSeries_I);
 // 					
-// 
+					// could be tax, phy or func, depending on what you pass in for the y value  
 // 					//get the x and y values for least squares
-// 					var ySeries = _data.map(function(d) { return d[yValue] });
-// 					var xSeries_F = DiversityArray_F;
-// 					var xSeries_I = DiversityArray_I;
-// 					var xSeries_O = DiversityArray_O;
-// 					var xSeries_G = DiversityArray_G;
-// 					var xSeries_C = DiversityArray_C;
-// 					
+					var ySeries_F = frugivore.map(function(d) { return d[yValue] });
+					var ySeries_I = insectivore.map(function(d) { return d[yValue] });
+					var ySeries_O = omnivore.map(function(d) { return d[yValue] });
+					var ySeries_G = granivore.map(function(d) { return d[yValue] });
+					var ySeries_C = carnivore.map(function(d) { return d[yValue] });
+
+					var dataArray_F=[];
+					var dataArray_I=[];
+					var dataArray_O=[];
+					var dataArray_G=[];
+					var dataArray_C=[];
+ 		
+					for (var i=0;i<xSeries_F.length;i++){
+						var indvArray_F = [];
+						indvArray_F.push(xSeries_F[i],ySeries_F[i]);
+						dataArray_F.push(indvArray_F);
+					
+						
+						var indvArray_I = [];
+						indvArray_I.push(xSeries_I[i],ySeries_I[i]);
+						dataArray_I.push(indvArray_I);
+						
+						var indvArray_O = [];
+						indvArray_O.push(xSeries_O[i],ySeries_O[i]);
+						dataArray_O.push(indvArray_O);
+						
+						var indvArray_G = [];
+						indvArray_G.push(xSeries_G[i],ySeries_G[i]);
+						dataArray_G.push(indvArray_G);
+						
+						var indvArray_C = [];
+						indvArray_C.push(xSeries_C[i],ySeries_C[i]);
+						dataArray_C.push(indvArray_C);
+						
+					}
+
+					console.log('dataArray_F');
+					console.log(dataArray_F);
+					
+					console.log('dataArray_I');
+					console.log(dataArray_I);
 // 		
-// 					var dataArray_F=[];
-// 					var dataArray_I=[];
-// 					var dataArray_O=[];
-// 					var dataArray_G=[];
-// 					var dataArray_C=[];
 // 		
-// 					for (var i=0;i<xSeries_F.length;i++){
-// 						var indvArray_F = [];
-// 						indvArray_F.push(xSeries_F[i],ySeries[i]);
-// 						dataArray_F.push(indvArray_F);
-// 						
-// 						var indvArray_I = [];
-// 						indvArray_I.push(xSeries_I[i],ySeries[i]);
-// 						dataArray_I.push(indvArray_I);
-// 						
-// 						var indvArray_O = [];
-// 						indvArray_O.push(xSeries_O[i],ySeries[i]);
-// 						dataArray_O.push(indvArray_O);
-// 						
-// 						var indvArray_G = [];
-// 						indvArray_G.push(xSeries_G[i],ySeries[i]);
-// 						dataArray_G.push(indvArray_G);
-// 						
-// 						var indvArray_C = [];
-// 						indvArray_C.push(xSeries_C[i],ySeries[i]);
-// 						dataArray_C.push(indvArray_C);
-// 						
-// 					}
-// 		
-// 		
-// 					var result_F = regression('linear', dataArray_F);
-// 					var slope_F = result_F.equation[0];
-// 					var yIntercept_F = result_F.equation[1];
-// 					
-// 					console.log(dataArray_F);
-// 					console.log(result_F);
-// 					
-// 					var result_I = regression('linear', dataArray_I);
-// 					var slope_I = result_I.equation[0];
-// 					var yIntercept_I = result_I.equation[1];
-// 					
-// 					var result_O = regression('linear', dataArray_O);
-// 					var slope_O = result_O.equation[0];
-// 					var yIntercept_O = result_O.equation[1];
-// 					
-// 					var result_G = regression('linear', dataArray_G);
-// 					var slope_G = result_G.equation[0];
-// 					var yIntercept_G = result_G.equation[1];
-// 					
-// 					var result_C = regression('linear', dataArray_C);
-// 					var slope_C = result_C.equation[0];
-// 					var yIntercept_C = result_C.equation[1];
+					var result_F = regression('linear', dataArray_F);
+					var slope_F = result_F.equation[0];
+					var yIntercept_F = result_F.equation[1];
+					
+					console.log('result_F');
+					console.log(result_F);
+					
+					var result_I = regression('linear', dataArray_I);
+					var slope_I = result_I.equation[0];
+					var yIntercept_I = result_I.equation[1];
+					
+					console.log('result_I');
+					console.log(result_I);
+					
+					var result_O = regression('linear', dataArray_O);
+					var slope_O = result_O.equation[0];
+					var yIntercept_O = result_O.equation[1];
+					
+					var result_G = regression('linear', dataArray_G);
+					var slope_G = result_G.equation[0];
+					var yIntercept_G = result_G.equation[1];
+					
+					var result_C = regression('linear', dataArray_C);
+					var slope_C = result_C.equation[0];
+					var yIntercept_C = result_C.equation[1];
 // 		
 // 					
 // 		
 // 					// apply the reults of the least squares regression
 // 		
-// 					var x1_F = d3.min(xSeries_F);
-// 					var y1_F = slope_F*x1_F+ yIntercept_F;
+					var x1_F = d3.min(xSeries_F);
+					var y1_F = slope_F*x1_F+ yIntercept_F;
 // 					
 // 					console.log(slope_F);
 // 					console.log(x1_F);
 // 					console.log(yIntercept_F);
 // 					
-// 					var x2_F = d3.max(xSeries_F);
-// 					var y2_F= slope_F*x2_F + yIntercept_F;
-// 					var trendData_F= [[x1_F,y1_F,x2_F,y2_F]];
-// 					
-// 					var x1_I = d3.min(xSeries_I);
-// 					var y1_I = slope_I*x1_I+ yIntercept_I;
-// 					var x2_I = d3.max(xSeries_I);
-// 					var y2_I= slope_F*x2_I + yIntercept_I;
-// 					var trendData_I= [[x1_I,y1_I,x2_I,y2_I]];
-// 					
-// 					var x1_O = d3.min(xSeries_O);
-// 					var y1_O = slope_O*x1_O+ yIntercept_O;
-// 					var x2_O = d3.max(xSeries_O);
-// 					var y2_O= slope_O*x2_O + yIntercept_O;
-// 					var trendData_O= [[x1_O,y1_O,x2_O,y2_O]];
-// 					
-// 					var x1_G = d3.min(xSeries_G);
-// 					var y1_G = slope_G*x1_G+ yIntercept_G;
-// 					var x2_G = d3.max(xSeries_G);
-// 					var y2_G= slope_G*x2_G + yIntercept_G;
-// 					var trendData_G= [[x1_G,y1_G,x2_G,y2_G]];
-// 					
-// 					var x1_C = d3.min(xSeries_C);
-// 					var y1_C = slope_C*x1_C+ yIntercept_C;
-// 					var x2_C = d3.max(xSeries_C);
-// 					var y2_C= slope_C*x2_C + yIntercept_C;
-// 					var trendData_C= [[x1_C,y1_C,x2_C,y2_C]];
+					var x2_F = d3.max(xSeries_F);
+					var y2_F= slope_F*x2_F + yIntercept_F;
+					var trendData_F= [[x1_F,y1_F,x2_F,y2_F]];
+					
+					var x1_I = d3.min(xSeries_I);
+					var y1_I = slope_I*x1_I+ yIntercept_I;
+					var x2_I = d3.max(xSeries_I);
+					var y2_I= slope_F*x2_I + yIntercept_I;
+					var trendData_I= [[x1_I,y1_I,x2_I,y2_I]];
+					
+					var x1_O = d3.min(xSeries_O);
+					var y1_O = slope_O*x1_O+ yIntercept_O;
+					var x2_O = d3.max(xSeries_O);
+					var y2_O= slope_O*x2_O + yIntercept_O;
+					var trendData_O= [[x1_O,y1_O,x2_O,y2_O]];
+					
+					var x1_G = d3.min(xSeries_G);
+					var y1_G = slope_G*x1_G+ yIntercept_G;
+					var x2_G = d3.max(xSeries_G);
+					var y2_G= slope_G*x2_G + yIntercept_G;
+					var trendData_G= [[x1_G,y1_G,x2_G,y2_G]];
+					
+					var x1_C = d3.min(xSeries_C);
+					var y1_C = slope_C*x1_C+ yIntercept_C;
+					var x2_C = d3.max(xSeries_C);
+					var y2_C= slope_C*x2_C + yIntercept_C;
+					var trendData_C= [[x1_C,y1_C,x2_C,y2_C]];
 // 		
 // 
 // 					console.log(trendData_F);
 // 		
-// 					var trendline_F = container.selectAll(".trendline"+_index)
-// 						.data(trendData_F);
+					var trendline_F = container.selectAll(".trendline"+_index)
+						.data(trendData_F);
 // 			
-// 					var trendline_I=container.selectAll(".trendline2"+_index)
-// 						.data(trendData_I);
-// 			
-// 					var trendline_O= container.selectAll(".trendline3"+_index)
-// 						.data(trendData_O);
+					var trendline_I=container.selectAll(".trendline2"+_index)
+						.data(trendData_I);
+			
+				    var trendline_O= container.selectAll(".trendline3"+_index)
+						.data(trendData_O);
 // 					
-// 					var trendline_G= container.selectAll(".trendline4"+_index)
-// 						.data(trendData_G);
-// 					
-// 					var trendline_C= container.selectAll(".trendline5"+_index)
-// 						.data(trendData_C);
-// 			
-// 					trendline_F.enter()
-// 						.append("line")
-// 						.attr("class", "trendline")
-// 						.attr("x1", function(d) { return x(d[0]); })
-// 						.attr("y1", function(d) { return y(d[1]); })
-// 						.attr("x2", function(d) { return x(d[2]); })
-// 						.attr("y2", function(d) { return y(d[3]); })
-// 						.attr("stroke", "#72A8FF")
-// 						.attr("stroke-width", 1);
+					var trendline_G= container.selectAll(".trendline4"+_index)
+						.data(trendData_G);
+					
+					var trendline_C= container.selectAll(".trendline5"+_index)
+						.data(trendData_C);
+ 			
+					trendline_F.enter()
+						.append("line")
+						.attr("class", "trendline")
+						.attr("x1", function(d) { return x(d[0]); })
+						.attr("y1", function(d) { return y(d[1]); })
+						.attr("x2", function(d) { return x(d[2]); })
+						.attr("y2", function(d) { return y(d[3]); })
+						.attr("stroke", "#FC1207")
+						.attr("stroke-width", 1);
 // 		
-// 					trendline_I.enter()
-// 						.append("line")
-// 						.attr("class", "trendline")
-// 						.attr("x1", function(d) { return x(d[0]); })
-// 						.attr("y1", function(d) { return y(d[1]); })
-// 						.attr("x2", function(d) { return x(d[2]); })
-// 						.attr("y2", function(d) { return y(d[3]); })
-// 						.attr("stroke", "#96BF52")
-// 						.attr("stroke-width", 1);
-// 			
-// 					trendline_O.enter()
-// 						.append("line")
-// 						.attr("class", "trendline")
-// 						.attr("x1", function(d) { return x(d[0]); })
-// 						.attr("y1", function(d) { return y2(d[1]); })
-// 						.attr("x2", function(d) { return x(d[2]); })
-// 						.attr("y2", function(d) { return y2(d[3]); })
-// 						.attr("stroke", "#D65734")
-// 						.attr("stroke-width", 1);
-// 					
-// 					trendline_G.enter()
-// 						.append("line")
-// 						.attr("class", "trendline")
-// 						.attr("x1", function(d) { return x(d[0]); })
-// 						.attr("y1", function(d) { return y2(d[1]); })
-// 						.attr("x2", function(d) { return x(d[2]); })
-// 						.attr("y2", function(d) { return y2(d[3]); })
-// 						.attr("stroke", "#D65734")
-// 						.attr("stroke-width", 1);
-// 						
-// 					trendline_C.enter()
-// 						.append("line")
-// 						.attr("class", "trendline")
-// 						.attr("x1", function(d) { return x(d[0]); })
-// 						.attr("y1", function(d) { return y2(d[1]); })
-// 						.attr("x2", function(d) { return x(d[2]); })
-// 						.attr("y2", function(d) { return y2(d[3]); })
-// 						.attr("stroke", "#D65734")
-// 						.attr("stroke-width", 1);
-					  
+					trendline_I.enter()
+						.append("line")
+						.attr("class", "trendline")
+						.attr("x1", function(d) { return x(d[0]); })
+						.attr("y1", function(d) { return y(d[1]); })
+						.attr("x2", function(d) { return x(d[2]); })
+						.attr("y2", function(d) { return y(d[3]); })
+						.attr("stroke", "#FD8451")
+						.attr("stroke-width", 1);
+			
+					trendline_O.enter()
+						.append("line")
+						.attr("class", "trendline")
+						.attr("x1", function(d) { return x(d[0]); })
+						.attr("y1", function(d) { return y(d[1]); })
+						.attr("x2", function(d) { return x(d[2]); })
+						.attr("y2", function(d) { return y(d[3]); })
+						.attr("stroke", "#ADCFD9")
+						.attr("stroke-width", 1);
+					
+					trendline_G.enter()
+						.append("line")
+						.attr("class", "trendline")
+						.attr("x1", function(d) { return x(d[0]); })
+						.attr("y1", function(d) { return y(d[1]); })
+						.attr("x2", function(d) { return x(d[2]); })
+						.attr("y2", function(d) { return y(d[3]); })
+						.attr("stroke", "#396A8E")
+						.attr("stroke-width", 1);
+						
+					trendline_C.enter()
+						.append("line")
+						.attr("class", "trendline")
+						.attr("x1", function(d) { return x(d[0]); })
+						.attr("y1", function(d) { return y(d[1]); })
+						.attr("x2", function(d) { return x(d[2]); })
+						.attr("y2", function(d) { return y(d[3]); })
+						.attr("stroke", "#38385B")
+						.attr("stroke-width", 1);
+// 					  
 					  
 					  
 					  

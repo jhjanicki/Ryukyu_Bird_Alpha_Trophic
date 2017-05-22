@@ -105,6 +105,7 @@
 				<div id="area-func"></div>
 			</div>
 		</div>
+<!-- 
 		<div class="row">	
 			<div class = "col-md-4">
 				<h3>  Land Birds NDVI vs Taxonomic Diversity </h3>
@@ -119,6 +120,7 @@
 				<div id="ndvi-func"></div>
 			</div>
 		</div>
+ -->
 		<div class="row">	
 			<div class = "col-md-4">
 				<h3>  Land Birds EVI vs Taxonomic Diversity </h3>
@@ -174,37 +176,37 @@ chart3.xValue('IslandArea')
 	.call(chart3); 
 	
 	
-var chart4 = d3.custom.scatterplot()._index(3);
- //land birds island area vs alpha
-chart4.xValue('NDVI')
-	  .yValue('Taxonomic')
-	  .xLabel('NDVI')
-	  .yLabel('Taxonomic Diversity');
- chart4.xlog('');
- d3.select('#ndvi-tax')
-	.datum(data)
-	.call(chart4); 
-	
-var chart5 = d3.custom.scatterplot()._index(4);
- //land birds island area vs alpha
-chart5.xValue('NDVI')
-	  .yValue('Phylogenetic')
-	  .xLabel('NDVI')
-	  .yLabel('Phylogenetic Diversity');
- chart5.xlog('');
- d3.select('#ndvi-phy')
-	.datum(data)
-	.call(chart5); 
-	
-var chart6 = d3.custom.scatterplot()._index(5);
-chart6.xValue('NDVI')
-	  .yValue('Functional')
-	  .xLabel('NDVI')
-	  .yLabel('Functional Diversity');
- chart6.xlog('');
- d3.select('#ndvi-func')
-	.datum(data)
-	.call(chart6); 
+// var chart4 = d3.custom.scatterplot()._index(3);
+//  //land birds island area vs alpha
+// chart4.xValue('NDVI')
+// 	  .yValue('Taxonomic')
+// 	  .xLabel('NDVI')
+// 	  .yLabel('Taxonomic Diversity');
+//  chart4.xlog('');
+//  d3.select('#ndvi-tax')
+// 	.datum(data)
+// 	.call(chart4); 
+// 	
+// var chart5 = d3.custom.scatterplot()._index(4);
+//  //land birds island area vs alpha
+// chart5.xValue('NDVI')
+// 	  .yValue('Phylogenetic')
+// 	  .xLabel('NDVI')
+// 	  .yLabel('Phylogenetic Diversity');
+//  chart5.xlog('');
+//  d3.select('#ndvi-phy')
+// 	.datum(data)
+// 	.call(chart5); 
+// 	
+// var chart6 = d3.custom.scatterplot()._index(5);
+// chart6.xValue('NDVI')
+// 	  .yValue('Functional')
+// 	  .xLabel('NDVI')
+// 	  .yLabel('Functional Diversity');
+//  chart6.xlog('');
+//  d3.select('#ndvi-func')
+// 	.datum(data)
+// 	.call(chart6); 
 	
 var chart7 = d3.custom.scatterplot()._index(6);
 chart7.xValue('EVI')
